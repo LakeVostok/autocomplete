@@ -1,0 +1,102 @@
+.input-hint {
+    position: relative;
+    width: 310px;
+	margin: 40px;
+    z-index: 2;
+}
+
+.input-hint__hint {
+    position: relative;
+    float: left;
+    margin: 0.31em 0 -2em 0.78em;
+    cursor: text;
+    color: #bababa;
+}
+.input-hint__hint--focused {
+    color: #dbdbdb;
+}
+.input-hint__hint--hidden {
+    display: none;
+}
+.input-hint__input {
+    width: 100%;
+    padding: 4px 10px 6px;
+    border: 1px solid #bbbbbb;
+    border-bottom: 1px solid #dadada;
+    border-radius: 3px;
+    font: normal 14px "Segoe UI";
+}
+.input-hint__input:focus {
+    outline: 0;
+    border-color: #5199db;
+    box-shadow: 0 0 0 1px #5199db;
+}
+.tooltip {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 1px;
+    z-index: -1;
+    width: 330px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0px;
+    list-style-type: none;
+    background: #fff;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+.input-hint__input:focus + .tooltip {
+    display: block;
+}
+.tooltip__visible {
+    display: block;
+}
+.tooltip-item {
+    display: block;
+    padding: 0px 7px 4px;
+    text-align: left;
+}
+.tooltip-item:hover:not(.tooltip__loading):not(.tooltip-item__error) {
+    background-color: #f1f1f1;
+}
+.tooltip__loading {
+    padding: 6px 7px 4px;
+}
+.tooltip__loading:before {
+    content: '';
+    display: block;
+    float: left;
+    margin: 1px 5px 0px 0px;
+    width: 18px;
+    height: 18px;
+    background: url(../../../static/loader.gif);
+    background-size: cover;
+}
+.tooltip-item__error {
+    padding: 0px;
+    font-size: 12px;
+    color: #848484;
+}
+.tooltip-item__error-message {
+    padding: 5px;
+    cursor: default;
+}
+.tooltip-item__error-message:hover {
+    background: #fff;
+}
+.tooltip-item__error-refresh {
+    padding: 5px;
+    margin-top: 5px;
+}
+.tooltip-item__error-refresh:hover {
+    background: #5199db;
+    color: #fff;
+}
+.tooltip-item__show-more {
+    padding: 4px 8px;
+    font-size: 10px;
+    color: #848484;
+    cursor: default;
+}

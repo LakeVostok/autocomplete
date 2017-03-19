@@ -1,0 +1,37 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font: normal 14px/20px "Segoe UI";
+    color: #404040;
+}
+.noscroll {
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: "KonturFont"; 
+    src: url('../../static/fonts/font.ttf');
+}
+
+.icon {
+    font-family: "KonturFont",serif;
+    font-style: normal;
+	margin: 0 4px 0 7px;
+}
+
+.icon-refresh:before {
+    content: '\E012';
+}
+
+.icon-mix:before {
+    content: '\E01F';
+}
+
+.icon-plus:before {
+    content: '\E00D';
+}
+
+.icon-minus:before {
+    content: '\E01E';
+}
