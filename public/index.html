@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<title>Autocomplete</title>
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<!--[if IE]>
+			<script src="lib/event.js"></script>
+			<script src="lib/es5-shim.min.js"></script>
+			<script src="lib/classList.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div style="position: absolute; top:0; bottom:0; right:0; left:0; margin:auto; height:100px; width:700px;">
+
+			<div class="input-hint">
+			    <label class="input-hint__hint" for="select">
+			        Введите или выберите из списка
+			    </label>
+			    <input class="input-hint__input" id="select" autocomplite="off" required/>
+			    <div class="input-hint__notice">Выберите значение из списка</div>
+			    <ul class="input-hint__dropdown"></ul>
+			</div>
+			
+			<div class="input-hint">
+			    <label class="input-hint__hint input-hint__hint-focused" for="input">
+			        Начните вводить название
+			    </label>
+			    <input class="input-hint__input" id="input" autocomplite="off" required/>
+			    <div class="input-hint__notice">Выберите значение из списка</div>
+			    <ul class="input-hint__dropdown"></ul>
+			</div>
+
+			<div style="height: 600px"></div>
+
+		</div>
+		<script src="js/main.js"></script>
+	</body>
+</html>

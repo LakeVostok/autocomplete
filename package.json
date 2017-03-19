@@ -1,0 +1,19 @@
+{
+  "name": "SKB_kontur_task",
+  "version": "1.0.0",
+  "description": "тестовое задание в СКБ Контур",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https:// .git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
