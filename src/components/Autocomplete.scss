@@ -1,0 +1,24 @@
+.autocomplite {
+    width: 310px;
+    float: left;
+    margin: 0 40px;
+}
+
+.autocomplete--select {
+    position: relative;
+}
+.autocomplete--select:after {
+    content: '\E04C';
+    font-family: "KonturFont",serif;
+    font-style: normal;
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+}
+.autocomplete__input {
+    width: 100%;
+}
+.dropdown {
+    position: absolute;
+    display: none;
+}
