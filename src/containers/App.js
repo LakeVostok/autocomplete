@@ -13,24 +13,8 @@ class App extends Component {
   constructor(props){
     super(props);
   }
-/*
-  render() {
-    let combineProps = { ...this.props.autocomplete, ...this.props.autocompleteActions } 
-    
-    return (
-      <div>
-      
-        <button onClick={()=>console.log(this.props)}/>
-        
-        <Autocomplete id="element1" type="autocomplete--input"  { ...combineProps } />
-        <Autocomplete id="element2" type="autocomplete--select" { ...combineProps } />
-      </div>
-    );
-  }
-*/
 
   render() {
-    //let { inputValue, onFocus, onBlur} = this.props.autocompleteActions;
     let actions = { ...this.props.autocompleteActions};
     let { element1, element2 } = this.props.autocomplete;
     

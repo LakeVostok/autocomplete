@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Dropdown.scss';
 
-const Dropdown = (props) => <ul {...props}>{props.children}</ul>;
+const Dropdown = (props) => <div {...props}>{props.children}</div>;
 
 export default Dropdown;

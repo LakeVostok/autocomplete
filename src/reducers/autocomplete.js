@@ -5,7 +5,7 @@ const initialState = {
     element2: {
         focused: false
     },
-    blya: '000'
+    test: '000'
 };
 
 export default function(state = initialState, action) {

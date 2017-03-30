@@ -1,11 +1,11 @@
-# Калькулятор матриц
+# Автокомплит
 
-Демонстрация без установки [lakevostok.github.io/matrix_calc/](https://lakevostok.github.io/matrix_calc/)
+Демонстрация без установки [lakevostok.github.io/autocomplete/](https://lakevostok.github.io/autocomplete/)
 
 установка:
 ```sh
-$ git clone https://github.com/LakeVostok/lakevostok.github.com.git
-$ cd matrix_calc
+$ git clone https://github.com/LakeVostok/autocomplete.git
+$ cd autocomplete
 $ npm i
 ```
 
