@@ -1,0 +1,14 @@
+.autocomplete {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+.autocomplete--select:after {
+    content: '\E04C';
+    font-family: "KonturFont",serif;
+    font-style: normal;
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
