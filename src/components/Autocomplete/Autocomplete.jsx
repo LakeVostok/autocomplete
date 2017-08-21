@@ -258,7 +258,7 @@ export default class Autocomplete extends Component {
         }
 
         if(!this.state.value || !this.state.data) {
-            return this.setState(() => this.finalize(false));
+            return this.setState({ ...this.select("", null, null), ...this.finalize(false) });
         }
 
         if(!this.state.selected && this.state.data.length && this.state.value == this.state.data[this.state.highlightedIndex][this.props.queryValue]) {
