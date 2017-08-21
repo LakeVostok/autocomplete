@@ -14,7 +14,7 @@
     "url": "git+https://github.com/LakeVostok/autocomplete.git"
   },
   "author": "Nikita Kulikov",
-  "email": "lakevostok@yandex.ru"
+  "email": "lakevostok@yandex.ru",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/LakeVostok/autocomplete/issues"
