@@ -20,4 +20,4 @@ npm run serve
 ```
 npm start
 ```
-Просмотр доступен на [localhost:8080](http://localhost), если не задан `process.env.PORT`
+Просмотр доступен на [localhost:8080](http://localhost:8080), если не задан `process.env.PORT`
