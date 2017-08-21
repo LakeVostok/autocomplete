@@ -25,13 +25,14 @@ export default class Input extends Component {
     }
 
     render() {
-        let {refNode, iconName, iconPosition, error, ...props} = this.props;
-
+        let {refNode, iconName, iconPosition, error, width, ...props} = this.props;
+        
         return (
             <span className="input__wrapper">
                 <input
                     className={`input ${this.className} ${error ? "error" : ""}`}
                     ref={refNode}
+                    style={{ width: width + "px" }}
                     {...props}
                 />
                 {
@@ -64,6 +65,11 @@ Input.propTypes = {
      * Disabled state 
      */
     disabled: PropTypes.bool,
+
+    /**
+     * Width on input element
+     */
+    width: PropTypes.number,
 
     /**
      * Focus event handler

@@ -146,6 +146,7 @@ export default class Autocomplete extends Component {
                     placeholder={this.props.placeholder}
                     error={!this.state.isValid}
                     disabled={this.props.disabled}
+                    width={this.props.width}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
                     onChange={this.handleChange}
@@ -347,6 +348,11 @@ Autocomplete.propTypes = {
      * Placeholder for input element
      */
     placeholder: PropTypes.string,
+    
+    /**
+     * Width of input element
+     */
+    width: PropTypes.number,
 
     /**
      * url from which the data will be downloaded
