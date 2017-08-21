@@ -1,2 +1,2 @@
-import Dropdown from './Dropdown.jsx';
-module.exports = Dropdown;
+import Dropdown from "./Dropdown.jsx";
+export default Dropdown;

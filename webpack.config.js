@@ -1,60 +1,51 @@
-'use strict'
-
-const NODE_ENV = 'development';
-const path = require('path');
-const webpack = require('webpack');
+const { resolve } = require("path");
 
 module.exports = {
-    entry: [
-        'webpack-hot-middleware/client',
-        './src/index.js',
+    entry:  [
+        "babel-polyfill",
+        "react-hot-loader/patch",
+        "./src/index"
     ],
+
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: "bundle.js",
-        publicPath: '/dist/'
+        path: resolve(__dirname, "dist"),
+        filename: "bundle.js"
     },
-    watch: true,
 
-    devtool: 'cheap-source-map',
-
-    plugins: [
-        new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({
-            NODE_ENV: JSON.stringify(NODE_ENV)
-        }),
-        new webpack.HotModuleReplacementPlugin()
-    ],
-
+    devtool: "source-map",
 
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.js$/,
-                loaders: ['react-hot', 'babel'],
-                include: path.join(__dirname, 'src')
-            },
-            {
-                test: /\.jsx?$/,
-                loader: 'babel',
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                query: {
-                    presets: ['react', 'es2015']
-                }
+                loader: "babel-loader"
             },
             {
                 test: /\.scss$/,
-                loaders: ["style-loader", "css-loader", 'sass-loader']
+                loaders: ["style-loader", "css-loader", "sass-loader"]
             },
             {
                 test   : /\.(ttf|eot|svg|woff(2))(\?[a-z0-9]+)?$/,
-                loader : 'file-loader'
+                loader : "file-loader"
             },
             {
                 test: /\.gif$/,
                 loader: "file-loader"
             }
         ]
-    }
-}
+    },
 
+    devServer: {
+        noInfo: true,
+        historyApiFallback: true,
+        contentBase: resolve(__dirname, "dist"),
+        host: "0.0.0.0",
+        port: "8080",
+        proxy: [{
+            context: ["/searchcity"],
+            target: "http://localhost:8081"
+        }],
+        disableHostCheck: true
+    }
+};

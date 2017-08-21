@@ -1,2 +1,2 @@
-import Input from './Input.jsx';
-module.exports = Input;
+import Input from "./Input.jsx";
+export default Input;

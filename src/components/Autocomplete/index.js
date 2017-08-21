@@ -1,2 +1,2 @@
-import Autocomplete from './Autocomplete.jsx';
-module.exports = Autocomplete;
+import Autocomplete from "./Autocomplete.jsx";
+export default Autocomplete;

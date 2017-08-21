@@ -1,26 +1,23 @@
-# РђРІС‚РѕРєРѕРјРїР»РёС‚
+# Автокомплит
+ Тестовое задание в СКБ Контур
 
-Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ Р±РµР· СѓСЃС‚Р°РЅРѕРІРєРё [lakevostok.github.io/autocomplete/](https://lakevostok.github.io/autocomplete/)
+### Установка
 
-СѓСЃС‚Р°РЅРѕРІРєР°:
-```sh
-$ git clone https://github.com/LakeVostok/autocomplete.git
-$ cd autocomplete
-$ npm i
+Требуется [Node.js](https://nodejs.org/) 8+
+
 ```
-
-Р·Р°РїСѓСЃРє РІ СЂРµР¶РёРјРµ СЂР°Р·СЂР°Р±РѕС‚РєРё:
-```sh
-$ npm start
+git clone https://github.com/LakeVostok/autocomplete.git
+cd autocomplete
+npm i
 ```
-
-СЃР±РѕСЂРєР° РїСЂРѕРµРєС‚Р° "РІ РїСЂРѕРґР°РєС€РЅ":
+### Для демонстрации
+собрать проект и запустить сервер
 ```sh
-$ npm run build
+npm run build
+npm run serve
 ```
-Р·Р°РїСѓСЃРє СЃРµСЂРІРµСЂР°:
-```sh
-$ npm run serve
+### Разработка
 ```
-
-РџСЂРѕСЃРјРѕС‚СЂ РґРѕСЃС‚СѓРїРµРЅ РЅР° [localhost:8080](http://localhost:8080), РµСЃР»Рё РЅРµ Р·Р°РґР°РЅ `process.env.PORT`
+npm start
+```
+Просмотр доступен на [localhost:8080](http://localhost), если не задан `process.env.PORT`

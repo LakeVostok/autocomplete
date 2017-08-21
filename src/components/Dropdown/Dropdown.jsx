@@ -1,6 +1,20 @@
-import React from 'react';
-import './Dropdown.scss';
+import React, { Component } from "react";
 
-const Dropdown = (props) => <div {...props}>{props.children}</div>;
+import Popup from "../Popup";
 
-export default Dropdown;
+export default class DropDown extends Component {
+    render() {
+        let { children, ...props } = this.props;
+
+        return <Popup
+                    positions={["bottom left", "top left"]}
+                    margin={2}
+                    offset={0}
+                    onClickOutside={() => {}}
+                    onFocusOutside={() => {}}
+                    {...props}
+                >
+                    {children}
+                </Popup>
+    }
+}
