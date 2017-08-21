@@ -74,6 +74,7 @@ div.autocomplete__error {
     position: absolute;
     bottom: -25px;
     left: 0;
+    user-select: none;
 }
 
 .invalid {
