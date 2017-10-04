@@ -1,50 +1,41 @@
 {
-  "name": "autocomplete",
-  "version": "0.0.1",
-  "description": "Test task to the SKB Kontur",
+  "name": "stuff",
+  "version": "1.0.0",
+  "description": "",
   "scripts": {
-    "build": "webpack -p --progress --config ./webpack.prod.config.js",
-    "serve": "cross-env NODE_ENV=production node server.js",
-    "webpack": "webpack-dev-server --progress --hot --color ",
-    "dev": "cross-env NODE_ENV=development node server.js",
-    "start": "npm run dev & npm run webpack"
+    "start": "webpack-dev-server --color --progress",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "lint": "eslint ./src --ext .jsx,js",
+    "lint-staged": "lint-staged"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LakeVostok/autocomplete.git"
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.{js,jsx}": "lint"
   },
-  "author": "Nikita Kulikov",
-  "email": "lakevostok@yandex.ru",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LakeVostok/autocomplete/issues"
-  },
-  "homepage": "https://github.com/LakeVostok/autocomplete#readme",
   "dependencies": {
-    "axios": "^0.16.2",
-    "prop-types": "^15.5.10",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.23.1",
-    "babel-loader": "^6.3.2",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-latest": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
+    "@storybook/react": "^3.2.12",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "cross-env": "^5.0.5",
-    "css-loader": "^0.28.4",
-    "extract-text-webpack-plugin": "^2.1.2",
-    "file-loader": "^0.11.2",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.7.2",
+    "eslint-plugin-react": "^7.4.0",
+    "lint-staged": "^4.2.3",
     "node-sass": "^4.5.3",
-    "react-hot-loader": "^3.0.0-beta.6",
+    "pre-commit": "^1.2.2",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.18.2",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
-  },
-  "engines": {
-    "node": ">=8.2.0"
+    "style-loader": "^0.19.0",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1",
+    "react-hot-loader": "^3.0.0-beta.7"
   }
 }

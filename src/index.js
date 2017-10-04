@@ -1,22 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
+import Main from "./Main.js";
 
-import Root from "./containers/Root";
-
-const render = Component => {
-  ReactDOM.render(
+ReactDOM.render(
     <AppContainer>
-      <Component />
+        <Main />
     </AppContainer>,
     document.getElementById("root")
-  );
-};
+);
 
-render(Root);
-
+// Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept("./containers/Root", () => {
-    render(Root)
-  });
+    module.hot.accept("./Main", () => {
+        const NextApp = require("./Main").default;
+        ReactDOM.render(
+            <AppContainer>
+                <NextApp />
+            </AppContainer>,
+            document.getElementById("root")
+        );
+    });
 }

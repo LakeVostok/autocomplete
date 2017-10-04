@@ -1,4 +1,5 @@
 const { resolve } = require("path");
+const PORT = process.env.PORT ? process.env.PORT : 8080;
 
 module.exports = {
     entry:  [
@@ -19,33 +20,15 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
-            },
-            {
-                test: /\.scss$/,
-                loaders: ["style-loader", "css-loader", "sass-loader"]
-            },
-            {
-                test   : /\.(ttf|eot|svg|woff(2))(\?[a-z0-9]+)?$/,
-                loader : "file-loader"
-            },
-            {
-                test: /\.gif$/,
-                loader: "file-loader"
+                loaders: ["react-hot-loader/webpack", "babel-loader"]
             }
         ]
     },
 
     devServer: {
-        noInfo: true,
-        historyApiFallback: true,
-        contentBase: resolve(__dirname, "dist"),
-        host: "0.0.0.0",
-        port: "8080",
-        proxy: [{
-            context: ["/searchcity"],
-            target: "http://localhost:8081"
-        }],
-        disableHostCheck: true
+        publicPath: "/dist/",
+        host: "127.0.0.1",
+        port: PORT,
+        noInfo: true
     }
 };
