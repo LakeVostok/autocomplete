@@ -7,7 +7,8 @@ export default class Input extends Component {
         value: PropTypes.string,
         placeholder: PropTypes.string,
         onChange: PropTypes.func,
-        width: PropTypes.number
+        width: PropTypes.number,
+        refNode: PropTypes.func
     }
 
     render() {
@@ -17,6 +18,7 @@ export default class Input extends Component {
 
         return (
             <input
+                ref={this.props.refNode}
                 value={this.props.value}
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
