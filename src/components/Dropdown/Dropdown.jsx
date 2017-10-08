@@ -9,7 +9,7 @@ export default class Dropdown extends Component {
         opened: PropTypes.bool,
         anchor: PropTypes.node,
         width: PropTypes.number,
-        margin: PropTypes.margin
+        margin: PropTypes.number
     }
 
     componentWillReceiveProps(props) {
