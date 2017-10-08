@@ -1,9 +1,28 @@
 :local {
     .input {
         box-sizing: border-box;
+        width: 100%;
+        padding: 6px 8px;
+        border: 1px solid #d9d9d9;
+        border-top-color: #b2b2b2;
 
-        .error {
-            border: 1px solid red;
+        &.error {
+            border-color: #d92b2b;
+            box-shadow: 0 0 0 1px #d92b2b;
+        }
+
+        &:focus {
+            outline: 0;
+            border-color: #5199db;
+            box-shadow: 0 0 0 1px #5199db;
+
+            &::placeholder {
+                color: #ccc;
+            }
+        }
+
+        &::ms-clear {
+            display: none;
         }
     }
 }
