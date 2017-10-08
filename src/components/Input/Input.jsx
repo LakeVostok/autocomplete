@@ -13,13 +13,9 @@ export default class Input extends Component {
     }
 
     render() {
-        let { error } = this.props;
+        let { error, width } = this.props;
 
         let className = `${styles.input} ${error ? styles.error : ""}`;
-
-        let style = {
-            width: this.props.width + "px"
-        };
 
         return (
             <input
@@ -28,7 +24,7 @@ export default class Input extends Component {
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
                 className={className}
-                style={style}
+                style={{width}}
             />
         );
     }
