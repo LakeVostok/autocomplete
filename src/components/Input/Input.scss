@@ -1,5 +1,9 @@
 :local {
     .input {
         box-sizing: border-box;
+
+        .error {
+            border: 1px solid red;
+        }
     }
 }

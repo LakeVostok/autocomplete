@@ -8,10 +8,15 @@ export default class Input extends Component {
         placeholder: PropTypes.string,
         onChange: PropTypes.func,
         width: PropTypes.number,
-        refNode: PropTypes.func
+        refNode: PropTypes.func,
+        error: PropTypes.bool
     }
 
     render() {
+        let { error } = this.props;
+
+        let className = `${styles.input} ${error ? styles.error : ""}`;
+
         let style = {
             width: this.props.width + "px"
         };
@@ -22,7 +27,7 @@ export default class Input extends Component {
                 value={this.props.value}
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
-                className={styles.input}
+                className={className}
                 style={style}
             />
         );
