@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input Snapshots empty 1`] = `
+<input
+  className="input "
+  onChange={undefined}
+  placeholder={undefined}
+  style={
+    Object {
+      "width": undefined,
+    }
+  }
+  value={undefined}
+/>
+`;
+
+exports[`Input Snapshots with 'error' class 1`] = `
+<input
+  className="input error"
+  onChange={undefined}
+  placeholder={undefined}
+  style={
+    Object {
+      "width": undefined,
+    }
+  }
+  value={undefined}
+/>
+`;
+
+exports[`Input Snapshots with with the specified width 1`] = `
+<input
+  className="input "
+  onChange={undefined}
+  placeholder={undefined}
+  style={
+    Object {
+      "width": 100,
+    }
+  }
+  value={undefined}
+/>
+`;
