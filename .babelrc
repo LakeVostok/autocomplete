@@ -4,7 +4,7 @@
 			"targets": {
 				"ie": 9
 			},
-			"modules": false
+			"modules": "umd"
 		}],
 		"stage-0",
 		"react"
