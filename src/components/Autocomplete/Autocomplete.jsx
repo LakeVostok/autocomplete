@@ -27,7 +27,10 @@ export default class Autocomplete extends Component {
                 <Input
                     value={this.props.value}
                     placeholder={this.props.placeholder}
-                    onChange={this.props.onChange}
+                    onChange={this.handleChange}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
+                    onKeyDown={this.handleKeyDown}
                     width={this.props.width}
                     refNode={this.refNode}
                 />
@@ -37,11 +40,23 @@ export default class Autocomplete extends Component {
                     width={this.props.width + 30}
                     margin={2}
                 >
-                
                 </Dropdown>
             </div>
         );
     }
+
+    handleChange = e => {
+        this.setState({ opened: !!e.target.value });
+        this.props.onChange(e);
+    }
+
+    handleFocus = e => {
+        if(e.target.value) this.setState({ opened: true })
+    }
+
+    handleBlur = () => this.setState({ opened: false })
+
+    handleKeyDown = () => {}
 
     refNode = node => this.input = node
 }
