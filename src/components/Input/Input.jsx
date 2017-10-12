@@ -9,7 +9,10 @@ export default class Input extends Component {
         onChange: PropTypes.func,
         width: PropTypes.number,
         refNode: PropTypes.func,
-        error: PropTypes.bool
+        error: PropTypes.bool,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onKeyDown: PropTypes.func
     }
 
     render() {
@@ -24,6 +27,9 @@ export default class Input extends Component {
                 value={this.props.value}
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onKeyDown={this.props.onKeyDown}
                 className={className}
                 style={{width}}
             />
