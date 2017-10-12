@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input Snapshots empty 1`] = `
+exports[`Input empty 1`] = `
 <input
-  className="input "
+  className="input"
   onChange={undefined}
   placeholder={undefined}
   style={
@@ -14,7 +14,7 @@ exports[`Input Snapshots empty 1`] = `
 />
 `;
 
-exports[`Input Snapshots with 'error' class 1`] = `
+exports[`Input with 'error' class 1`] = `
 <input
   className="input error"
   onChange={undefined}
@@ -28,9 +28,9 @@ exports[`Input Snapshots with 'error' class 1`] = `
 />
 `;
 
-exports[`Input Snapshots with with the specified width 1`] = `
+exports[`Input with with the specified width 1`] = `
 <input
-  className="input "
+  className="input"
   onChange={undefined}
   placeholder={undefined}
   style={

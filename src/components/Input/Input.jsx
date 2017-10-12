@@ -15,7 +15,8 @@ export default class Input extends Component {
     render() {
         let { error, width } = this.props;
 
-        let className = `${styles.input} ${error ? styles.error : ""}`;
+        let className = styles.input;
+        if(error) className += " " + styles.error;
 
         return (
             <input
