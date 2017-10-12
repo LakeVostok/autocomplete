@@ -33,17 +33,17 @@ export default class Autocomplete extends Component {
     }
 
     renderList = () => {
-        let items = [], { data, itemsCount } = this.props;
+        let { data, itemsCount } = this.props;
 
-        for(let i = 0; i < itemsCount; i++) {
-            items.push(
-                <div key={i} className={styles.list}>
-                    { this.renderListItem(data[i]) }
+        data.splice(itemsCount);
+
+        return data.map((item, index) => {
+            return (
+                <div key={index} className={styles.list}>
+                    { this.renderListItem(item) }
                 </div>
-            );
-        }
-
-        return items;
+            )
+        });
     }
 
     render() {
