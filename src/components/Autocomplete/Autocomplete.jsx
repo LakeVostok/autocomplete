@@ -10,7 +10,14 @@ export default class Autocomplete extends Component {
         value: PropTypes.string,
         placeholder: PropTypes.string,
         onChange: PropTypes.func,
-        width: PropTypes.number
+        width: PropTypes.number,
+        data: PropTypes.array,
+        itemsCount: PropTypes.number,
+        structure: PropTypes.array.isRequired
+    }
+
+    static defaultProps = {
+        itemsCount: 6
     }
 
     constructor(props) {
@@ -21,7 +28,27 @@ export default class Autocomplete extends Component {
         }
     }
 
+    renderListItem = item => {
+        return this.props.structure.map((q, i) => (<div key={i}>{item[q]}</div>));
+    }
+
+    renderList = () => {
+        let items = [], { data, itemsCount } = this.props;
+
+        for(let i = 0; i < itemsCount; i++) {
+            items.push(
+                <div key={i} className={styles.list}>
+                    { this.renderListItem(data[i]) }
+                </div>
+            );
+        }
+
+        return items;
+    }
+
     render() {
+        let { data } = this.props;
+
         return (
             <div className={styles.autocomplete}>
                 <Input
@@ -40,6 +67,7 @@ export default class Autocomplete extends Component {
                     width={this.props.width + 30}
                     margin={2}
                 >
+                    { data && this.renderList() }
                 </Dropdown>
             </div>
         );
