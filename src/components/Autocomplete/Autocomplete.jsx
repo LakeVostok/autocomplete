@@ -14,7 +14,9 @@ export default class Autocomplete extends Component {
         width: PropTypes.number,
         data: PropTypes.array,
         itemsCount: PropTypes.number,
-        structure: PropTypes.array.isRequired
+        structure: PropTypes.array.isRequired,
+        queryValue: PropTypes.string.isRequired,
+        onSelect: PropTypes.func
     }
 
     static defaultProps = {
@@ -26,7 +28,8 @@ export default class Autocomplete extends Component {
 
         this.state = {
             opened: false,
-            highlightedIndex: 0
+            highlightedIndex: 0,
+            selected: null
         }
     }
 
@@ -63,6 +66,7 @@ export default class Autocomplete extends Component {
                     margin={2}
                 >
                     <List
+                        onSelect={this.handleSelect}
                         highlighted={this.state.highlightedIndex}
                         ref={component => this.list = component}
                     >
@@ -84,6 +88,15 @@ export default class Autocomplete extends Component {
 
     handleBlur = () => this.setState({ opened: false })
 
+    handleSelect = selected => {
+        let { queryValue } = this.props;
+
+        this.props.onChange({target: {value: selected[queryValue]}});
+        this.props.onSelect(selected);
+
+        this.setState({ selected });
+    }
+
     handleKeyDown = e => {
         switch (e.keyCode) {
         case 38:
@@ -93,7 +106,7 @@ export default class Autocomplete extends Component {
             this.list.up();
             break;
         case 13:
-            //enter
+            this.handleSelect(this.list.selected);
             break;
         case 27:
             //escape
@@ -102,4 +115,8 @@ export default class Autocomplete extends Component {
     }
 
     refNode = node => this.input = node
+
+    get selected() {
+        return this.state.selected;
+    }
 }
