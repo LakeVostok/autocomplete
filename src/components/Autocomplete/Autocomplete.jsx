@@ -38,7 +38,7 @@ export default class Autocomplete extends Component {
         let { data, itemsCount } = this.props;
         data.splice(itemsCount);
 
-        return data.map((item, i) => <ListItem key={i}>{this.renderListItemContent(item)}</ListItem>);
+        return data.map((item, i) => <ListItem key={i} dataset={item}>{this.renderListItemContent(item)}</ListItem>);
     }
 
     render() {
