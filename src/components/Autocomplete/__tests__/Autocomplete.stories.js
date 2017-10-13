@@ -37,7 +37,8 @@ class Demo extends Component {
 
         this.state = {
             value: "",
-            data: null
+            data: null,
+            selected: null
         }
     }
 
@@ -45,19 +46,19 @@ class Demo extends Component {
         return (
             <Autocomplete
                 value={this.state.value}
+                queryValue="City"
                 data={this.state.data}
                 itemsCount={5}
                 structure={this.props.structure}
                 placeholder="Введите значение"
                 onChange={this.handleChange}
                 width={150}
+                onSelect={this.handleSelect}
             />
         );
     }
 
-    handleChange = async e => {
-        let { value } = e.target;
-
+    handleChange = async value => {
         if(!value) {
             return this.setState({ value: "", data: null });
         }
@@ -68,6 +69,8 @@ class Demo extends Component {
 
         this.setState({ data: filterByAlphabet(data) });
     }
+
+    handleSelect = selected => this.setState({ selected }) 
 }
 
 storiesOf("Autocomplete", module)
