@@ -109,7 +109,7 @@ export default class Autocomplete extends Component {
             this.handleSelect(this.list.selected);
             break;
         case 27:
-            //escape
+            this.setState({ opened: false });
             break;
         }
     }
