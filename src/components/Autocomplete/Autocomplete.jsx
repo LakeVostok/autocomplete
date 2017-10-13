@@ -77,9 +77,9 @@ export default class Autocomplete extends Component {
         );
     }
 
-    handleChange = e => {
-        this.setState({ opened: !!e.target.value });
-        this.props.onChange(e);
+    handleChange = value => {
+        this.setState({ opened: !!value });
+        this.props.onChange(value);
     }
 
     handleFocus = e => {
@@ -91,7 +91,7 @@ export default class Autocomplete extends Component {
     handleSelect = selected => {
         let { queryValue } = this.props;
 
-        this.props.onChange({target: {value: selected[queryValue]}});
+        this.props.onChange(selected[queryValue]);
         this.props.onSelect(selected);
 
         this.setState({ selected });

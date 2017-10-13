@@ -26,7 +26,7 @@ export default class Input extends Component {
                 ref={this.props.refNode}
                 value={this.props.value}
                 placeholder={this.props.placeholder}
-                onChange={this.props.onChange}
+                onChange={this.handleChange}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 onKeyDown={this.props.onKeyDown}
@@ -35,4 +35,6 @@ export default class Input extends Component {
             />
         );
     }
+
+    handleChange = e => this.props.onChange(e.target.value)
 }
