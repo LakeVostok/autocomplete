@@ -2,14 +2,14 @@
 
 dir="./src/components/$1"
 mkdir $dir
-mkdir "$dir/stories"
+mkdir "$dir/__tests__"
 
 echo "import React from \"react\";
 import { storiesOf } from \"@storybook/react\";
 import $1 from \"../$1\";
 
 storiesOf(\"$1\", module)
-    .add(\"without props\", () => <$1 />)" >> "$dir/stories/$1.stories.js"
+    .add(\"without props\", () => <$1 />)" >> "$dir/__tests__/$1.stories.js"
 
 echo "import React, { Component } from \"react\";
 import PropTypes from \"prop-types\";
