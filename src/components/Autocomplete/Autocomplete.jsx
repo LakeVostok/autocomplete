@@ -4,6 +4,7 @@ import styles from "./Autocomplete.scss";
 
 import Input from "../Input";
 import Dropdown from "../Dropdown";
+import { List, ListItem } from "../List";
 
 export default class Autocomplete extends Component {
     static propTypes = {
@@ -24,26 +25,20 @@ export default class Autocomplete extends Component {
         super(props);
 
         this.state = {
-            opened: false
+            opened: false,
+            highlightedIndex: 0
         }
     }
 
-    renderListItem = item => {
+    renderListItemContent = item => {
         return this.props.structure.map((q, i) => (<div key={i}>{item[q]}</div>));
     }
 
-    renderList = () => {
+    renderListItems = () => {
         let { data, itemsCount } = this.props;
-
         data.splice(itemsCount);
 
-        return data.map((item, index) => {
-            return (
-                <div key={index} className={styles.list}>
-                    { this.renderListItem(item) }
-                </div>
-            )
-        });
+        return data.map((item, i) => <ListItem key={i}>{this.renderListItemContent(item)}</ListItem>);
     }
 
     render() {
@@ -63,11 +58,16 @@ export default class Autocomplete extends Component {
                 />
                 <Dropdown
                     anchor={this.input}
-                    opened={this.state.opened}
+                    opened={this.state.opened && !!data}
                     width={this.props.width + 30}
                     margin={2}
                 >
-                    { data && this.renderList() }
+                    <List
+                        highlighted={this.state.highlightedIndex}
+                        ref={component => this.list = component}
+                    >
+                        { data && this.renderListItems() }
+                    </List>
                 </Dropdown>
             </div>
         );
@@ -84,7 +84,22 @@ export default class Autocomplete extends Component {
 
     handleBlur = () => this.setState({ opened: false })
 
-    handleKeyDown = () => {}
+    handleKeyDown = e => {
+        switch (e.keyCode) {
+        case 38:
+            this.list.down();
+            break;
+        case 40:
+            this.list.up();
+            break;
+        case 13:
+            //enter
+            break;
+        case 27:
+            //escape
+            break;
+        }
+    }
 
     refNode = node => this.input = node
 }
