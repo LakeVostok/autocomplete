@@ -10,7 +10,7 @@ let delay = ms => new Promise(resolve => setTimeout(resolve, ms));
  * Simulate request delay
  */
 function simulateFetch(value) {
-    return delay(Math.floor(Math.random() * 2000))
+    return delay(Math.floor(Math.random() * 5000))
         .then(() => filterByContain(value, data))
 }
 
