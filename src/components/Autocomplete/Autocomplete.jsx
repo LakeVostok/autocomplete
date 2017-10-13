@@ -5,6 +5,19 @@ import styles from "./Autocomplete.scss";
 import Input from "../Input";
 import Dropdown from "../Dropdown";
 import { List, ListItem } from "../List";
+import Loader from "../Loader";
+
+function Loading({loading}) {
+    return loading ? (
+        <div className={styles.loading}>
+            <Loader />
+        </div>
+    ) : null;
+}
+
+Loading.propTypes = {
+    loading: PropTypes.bool
+};
 
 export default class Autocomplete extends Component {
     static propTypes = {
@@ -29,7 +42,18 @@ export default class Autocomplete extends Component {
         this.state = {
             opened: false,
             highlightedIndex: 0,
-            selected: null
+            selected: null,
+            loading: false
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(!nextProps.value) return this.setState({ loading: false });
+
+        if(nextProps.data == this.props.data) {
+            this.setState({ loading: true });
+        } else {
+            this.setState({ loading: false });
         }
     }
 
@@ -59,9 +83,10 @@ export default class Autocomplete extends Component {
                     width={this.props.width}
                     refNode={this.refNode}
                 />
+                <Loading loading={this.state.loading} />
                 <Dropdown
                     anchor={this.input}
-                    opened={this.state.opened && !!data}
+                    opened={this.state.opened && !this.state.loading}
                     width={this.props.width + 30}
                     margin={2}
                 >
