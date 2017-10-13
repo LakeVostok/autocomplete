@@ -1,0 +1,18 @@
+:local {
+    .list {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    .item {
+        padding: 4px 7px;
+        text-align: left;
+
+        &.highlighted {
+            color: #fff;
+            background: #5199db;
+            cursor: pointer;
+        }
+    }
+}
