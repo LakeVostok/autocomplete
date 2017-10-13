@@ -66,12 +66,7 @@ export class List extends Component {
     }
 
     handleMouseDown = () => {
-        this.props.onSelect(this.select());
-    }
-
-    select = () => {
-        let index = this.state.highlighted;
-        return this.props.children[index].props.dataset;
+        this.props.onSelect(this.selected);
     }
 
     pick = offset => {
@@ -86,4 +81,9 @@ export class List extends Component {
     up = () => this.pick(1)
 
     down = () => this.pick(-1)
+
+    get selected() {
+        let index = this.state.highlighted;
+        return this.props.children[index].props.dataset;
+    }
 }
