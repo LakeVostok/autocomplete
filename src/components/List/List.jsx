@@ -21,7 +21,8 @@ export class ListItem extends Component {
 
 export class List extends Component {
     static propTypes = {
-        highlighted: PropTypes.number
+        highlighted: PropTypes.number,
+        onSelect: PropTypes.func
     }
 
     constructor(props) {
@@ -44,6 +45,7 @@ export class List extends Component {
             <ul
                 className={styles.list}
                 onMouseOver={this.handleMouseOver}
+                onMouseDown={this.handleMouseDown}
             >
                 {
                     React.Children.map(children, (item, index) => {
@@ -61,6 +63,15 @@ export class List extends Component {
         let targetIndex = [].indexOf.call(target.parentNode.children, target);
 
         this.setState({ highlighted: targetIndex })
+    }
+
+    handleMouseDown = () => {
+        this.props.onSelect(this.select());
+    }
+
+    select = () => {
+        let index = this.state.highlighted;
+        return this.props.children[index].props.dataset;
     }
 
     pick = offset => {
