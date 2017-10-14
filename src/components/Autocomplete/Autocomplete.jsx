@@ -7,18 +7,6 @@ import Dropdown from "../Dropdown";
 import { List, ListItem } from "../List";
 import Loader from "../Loader";
 
-function Loading({loading}) {
-    return loading ? (
-        <div className={styles.loading}>
-            <Loader />
-        </div>
-    ) : null;
-}
-
-Loading.propTypes = {
-    loading: PropTypes.bool
-};
-
 export default class Autocomplete extends Component {
     static propTypes = {
         value: PropTypes.string,
@@ -146,6 +134,18 @@ export default class Autocomplete extends Component {
         return this.state.selected;
     }
 }
+
+function Loading({loading}) {
+    return loading ? (
+        <div className={styles.loading}>
+            <Loader />
+        </div>
+    ) : null;
+}
+
+Loading.propTypes = {
+    loading: PropTypes.bool
+};
 
 function NotFound({display}) {
     return display ? (
