@@ -97,6 +97,7 @@ export default class Autocomplete extends Component {
                     >
                         { data && this.renderListItems() }
                     </List>
+                    <NotFound display={this.props.value && data && !data.length} />
                 </Dropdown>
             </div>
         );
@@ -145,3 +146,13 @@ export default class Autocomplete extends Component {
         return this.state.selected;
     }
 }
+
+function NotFound({display}) {
+    return display ? (
+        <div className={styles.notFound}>Не найдено</div>
+    ) : null;
+}
+
+NotFound.propTypes = {
+    display: PropTypes.bool
+};
