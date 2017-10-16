@@ -9,107 +9,57 @@ import Loader from "../Loader";
 
 export default class Autocomplete extends Component {
     static propTypes = {
-        value: PropTypes.string,
         placeholder: PropTypes.string,
-        onChange: PropTypes.func,
-        width: PropTypes.number,
-        data: PropTypes.array,
-        itemsCount: PropTypes.number,
-        structure: PropTypes.array.isRequired,
-        queryValue: PropTypes.string.isRequired,
-        onSelect: PropTypes.func
-    }
-
-    static defaultProps = {
-        itemsCount: 6
+        width: PropTypes.number
     }
 
     constructor(props) {
         super(props);
 
         this.state = {
-            opened: false,
-            highlightedIndex: 0,
-            selected: null,
-            loading: false
+            value: "",
+            opened: false
         }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if(!nextProps.value) return this.setState({ loading: false });
-
-        if(nextProps.data == this.props.data) {
-            this.setState({ loading: true });
-        } else {
-            this.setState({ loading: false });
-        }
-    }
-
-    renderListItemContent = item => {
-        return this.props.structure.map((q, i) => (<div key={i}>{item[q]}</div>));
-    }
-
-    renderListItems = () => {
-        let { data, itemsCount } = this.props;
-        data.splice(itemsCount);
-
-        return data.map((item, i) => <ListItem key={i} dataset={item}>{this.renderListItemContent(item)}</ListItem>);
     }
 
     render() {
-        let { data } = this.props;
-
         return (
             <div className={styles.autocomplete}>
+                <Loading />
                 <Input
-                    value={this.props.value}
+                    value={this.state.value}
                     placeholder={this.props.placeholder}
                     onChange={this.handleChange}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
-                    onKeyDown={this.handleKeyDown}
+                    //onKeyDown={this.handleKeyDown}
                     width={this.props.width}
                     refNode={this.refNode}
                 />
-                <Loading loading={this.state.loading} />
                 <Dropdown
                     anchor={this.input}
-                    opened={this.state.opened && !this.state.loading}
-                    width={this.props.width + 30}
+                    opened={this.state.opened}
+                    width={this.props.width}
                     margin={2}
                 >
                     <List
-                        onSelect={this.handleSelect}
-                        highlighted={this.state.highlightedIndex}
+                        //onSelect={this.handleSelect}
+                        //highlighted={this.state.highlightedIndex}
                         ref={component => this.list = component}
                     >
-                        { data && this.renderListItems() }
+                        <ListItem />
                     </List>
-                    <NotFound display={this.props.value && data && !data.length} />
+                    <NotFound />
                 </Dropdown>
             </div>
         );
     }
 
-    handleChange = value => {
-        this.setState({ opened: !!value });
-        this.props.onChange(value);
-    }
+    handleChange = value => this.setState({ value })
 
-    handleFocus = e => {
-        if(e.target.value) this.setState({ opened: true })
-    }
+    handleFocus = () => this.setState({ opened: true })
 
     handleBlur = () => this.setState({ opened: false })
-
-    handleSelect = selected => {
-        let { queryValue } = this.props;
-
-        this.props.onChange(selected[queryValue]);
-        this.props.onSelect(selected);
-
-        this.setState({ selected });
-    }
 
     handleKeyDown = e => {
         switch (e.keyCode) {
@@ -120,19 +70,15 @@ export default class Autocomplete extends Component {
             this.list.up();
             break;
         case 13:
-            this.handleSelect(this.list.selected);
+            //enter
             break;
         case 27:
-            this.setState({ opened: false });
+            //escape
             break;
         }
     }
 
     refNode = node => this.input = node
-
-    get selected() {
-        return this.state.selected;
-    }
 }
 
 function Loading({loading}) {
