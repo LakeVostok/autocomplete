@@ -33,6 +33,8 @@ export default class Autocomplete extends Component {
             value: "",
             opened: false,
             data: null,
+            loading: false,
+            showLoader: false
         }
 
         this.throttledUpdate = throttle(this.updateData, 5000);
@@ -60,9 +62,11 @@ export default class Autocomplete extends Component {
     }
 
     render() {
+        let isDataFound = this.state.data && this.state.data.length;
+
         return (
             <div className={styles.autocomplete}>
-                <Loading />
+                <Loading display={this.state.value && this.state.showLoader} />
                 <Input
                     value={this.state.value}
                     placeholder={this.props.placeholder}
@@ -75,7 +79,7 @@ export default class Autocomplete extends Component {
                 />
                 <Dropdown
                     anchor={this.input}
-                    opened={this.state.opened}
+                    opened={this.state.data && this.state.opened}
                     width={this.props.width}
                     margin={2}
                 >
@@ -86,14 +90,15 @@ export default class Autocomplete extends Component {
                     >
                         <ListElements data={this.state.data} queryValue={this.props.queryValue} />
                     </List>
-                    <NotFound />
+                    <NotFound display={!isDataFound && !this.state.showLoader} />
                 </Dropdown>
             </div>
         );
     }
 
     handleChange = value => {
-        this.setState({ value, data: null }, this.throttledUpdate);
+        this.setState({ value, data: null, loading: true }, this.throttledUpdate);
+        this.showLoader();
     }
 
     handleFocus = () => this.setState({ opened: true })
@@ -118,13 +123,26 @@ export default class Autocomplete extends Component {
     }
 
     updateData = async () => {
-        if(!this.state.value) return;
+        if(!this.state.value) return this.setState({ loading: false });
 
         let { queryValue, itemsCount } = this.props;
 
         let data = await this.getData(this.state.value, queryValue, itemsCount);
 
-        this.setState({ data });
+        this.setState({ data, loading: false });
+    }
+
+    showLoader = () => {
+        let that = this;
+
+        setTimeout(function run() {
+            if(!that.state.loading) {
+                that.setState({ showLoader: false });
+                return null;
+            }
+
+            that.setState({ showLoader: true }, () => setTimeout(run, 1000));
+        }, 500);
     }
 
     refNode = node => this.input = node
@@ -160,8 +178,8 @@ ListElements.propTypes = {
     queryValue: PropTypes.string
 }
 
-function Loading({loading}) {
-    return loading ? (
+function Loading({display}) {
+    return display ? (
         <div className={styles.loading}>
             <Loader />
         </div>
@@ -169,7 +187,7 @@ function Loading({loading}) {
 }
 
 Loading.propTypes = {
-    loading: PropTypes.bool
+    display: PropTypes.bool
 };
 
 function NotFound({display}) {
