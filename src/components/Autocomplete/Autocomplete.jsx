@@ -34,7 +34,9 @@ export default class Autocomplete extends Component {
             opened: false,
             data: null,
             loading: false,
-            showLoader: false
+            showLoader: false,
+            selected: null,
+            highlightedIndex: 0
         }
 
         this.throttledUpdate = throttle(this.updateData, 5000);
@@ -62,6 +64,8 @@ export default class Autocomplete extends Component {
     }
 
     render() {
+        let { data } = this.state;
+        let { queryValue } = this.props;
         let isDataFound = this.state.data && this.state.data.length;
 
         return (
@@ -84,11 +88,17 @@ export default class Autocomplete extends Component {
                     margin={2}
                 >
                     <List
-                        //onSelect={this.handleSelect}
-                        //highlighted={this.state.highlightedIndex}
+                        onSelect={this.handleSelect}
+                        highlighted={this.state.highlightedIndex}
                         ref={component => this.list = component}
                     >
-                        <ListElements data={this.state.data} queryValue={this.props.queryValue} />
+                        {
+                            data && data.map((item, index) => (
+                                <ListItem dataset={item} key={index}>
+                                    { item[queryValue] }
+                                </ListItem>
+                            ))
+                        }
                     </List>
                     <NotFound display={!isDataFound && !this.state.showLoader} />
                 </Dropdown>
@@ -99,6 +109,10 @@ export default class Autocomplete extends Component {
     handleChange = value => {
         this.setState({ value, data: null, loading: true }, this.throttledUpdate);
         this.showLoader();
+    }
+
+    handleSelect = selected => {
+        this.setState({ selected, value: selected[this.props.queryValue], data: null });
     }
 
     handleFocus = () => this.setState({ opened: true })
@@ -161,21 +175,6 @@ function filterItems(data, value, queryValue, itemsCount) {
     };
 
     return data.filter(isEqual).sort(compare).slice(0, itemsCount);
-}
-
-function ListElements({data, queryValue}) {
-    return data && data.length ? (
-        data.map((item, index) => (
-            <ListItem dataset={item} key={index}>
-                { item[queryValue] }
-            </ListItem>)
-        )
-    ) : null;
-}
-
-ListElements.propTypes = {
-    data: PropTypes.array,
-    queryValue: PropTypes.string
 }
 
 function Loading({display}) {
