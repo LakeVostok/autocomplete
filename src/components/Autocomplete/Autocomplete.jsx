@@ -77,7 +77,7 @@ export default class Autocomplete extends Component {
                     onChange={this.handleChange}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
-                    //onKeyDown={this.handleKeyDown}
+                    onKeyDown={this.handleKeyDown}
                     width={this.props.width}
                     refNode={this.refNode}
                 />
@@ -107,7 +107,7 @@ export default class Autocomplete extends Component {
     }
 
     handleChange = value => {
-        this.setState({ value, data: null, loading: true }, this.throttledUpdate);
+        this.setState({ value, data: null, loading: true, opened: true }, this.throttledUpdate);
         this.showLoader();
     }
 
@@ -128,10 +128,13 @@ export default class Autocomplete extends Component {
             this.list.up();
             break;
         case 13:
-            //enter
+            if(this.state.data && this.state.data.length) {
+                let selected = this.list.selected;
+                this.setState({ selected, value: selected[this.props.queryValue], data: null, opened: false });
+            }
             break;
         case 27:
-            //escape
+            this.setState({ opened: false });
             break;
         }
     }
