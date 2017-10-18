@@ -4,7 +4,8 @@ import styles from "./List.scss";
 
 export class ListItem extends Component {
     static propTypes = {
-        highlighted: PropTypes.bool
+        highlighted: PropTypes.bool,
+        dataset: PropTypes.object
     }
 
     render() {
