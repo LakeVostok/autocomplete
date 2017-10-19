@@ -19,7 +19,8 @@ export default class Autocomplete extends Component {
          * The key in data by which will be filtering occur
          */
         queryValue: PropTypes.string.isRequired,
-        itemsCount: PropTypes.number
+        itemsCount: PropTypes.number,
+        onSelect: PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -115,7 +116,8 @@ export default class Autocomplete extends Component {
     }
 
     handleSelect = selected => {
-        this.setState({ selected, value: selected[this.props.queryValue], data: null });
+        this.setState({ selected, value: selected[this.props.queryValue], data: null, opened: true });
+        this.props.onSelect(selected);
     }
 
     handleFocus = () => this.setState({ opened: true })
@@ -132,8 +134,7 @@ export default class Autocomplete extends Component {
             break;
         case 13:
             if(this.state.data && this.state.data.length) {
-                let selected = this.list.selected;
-                this.setState({ selected, value: selected[this.props.queryValue], data: null, opened: false });
+                this.handleSelect(this.list.selected);
             }
             break;
         case 27:
