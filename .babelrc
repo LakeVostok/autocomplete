@@ -3,8 +3,7 @@
 		["env", {
 			"targets": {
 				"ie": 9
-			},
-			"modules": "umd"
+			}
 		}],
 		"stage-0",
 		"react"

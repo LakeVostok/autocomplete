@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "build": "webpack -p --progress --config webpack.config.production.js",
     "start": "webpack-dev-server --color --progress",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "jest --no-cache",
