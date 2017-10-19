@@ -39,7 +39,7 @@ export default class Autocomplete extends Component {
             highlightedIndex: 0
         }
 
-        this.throttledUpdate = throttle(this.updateData, 5000);
+        this.throttledUpdate = throttle(this.updateData, 1000);
     }
 
     componentWillMount() {
@@ -66,11 +66,14 @@ export default class Autocomplete extends Component {
     render() {
         let { data } = this.state;
         let { queryValue } = this.props;
-        let isDataFound = this.state.data && this.state.data.length;
+
+        let showLoader = !!this.state.value && this.state.showLoader;
+        let showDropdown = data && this.state.opened && !this.state.showLoader;
+        let showNotfound = data && !data.length && !this.state.showLoader;
 
         return (
             <div className={styles.autocomplete}>
-                <Loading display={this.state.value && this.state.showLoader} />
+                <Loading display={showLoader} />
                 <Input
                     value={this.state.value}
                     placeholder={this.props.placeholder}
@@ -83,7 +86,7 @@ export default class Autocomplete extends Component {
                 />
                 <Dropdown
                     anchor={this.input}
-                    opened={this.state.data && this.state.opened}
+                    opened={showDropdown}
                     width={this.props.width}
                     margin={2}
                 >
@@ -100,7 +103,7 @@ export default class Autocomplete extends Component {
                             ))
                         }
                     </List>
-                    <NotFound display={!isDataFound && !this.state.showLoader} />
+                    <NotFound display={showNotfound} />
                 </Dropdown>
             </div>
         );
