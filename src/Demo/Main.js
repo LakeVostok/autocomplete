@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Autocomplete from "./components/Autocomplete";
+import Autocomplete from "../components/Autocomplete";
 import "./Main.scss";
 
 const data = require("./kladr.json");
